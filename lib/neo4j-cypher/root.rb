@@ -119,7 +119,7 @@ module Neo4j
         # @return [StartNode, NodeVar]
         def node(*nodes)
           if nodes.first.is_a?(Symbol)
-            NodeVar.new(clause_list).eval_context.as(nodes.first)
+            NodeVar.new(clause_list, nodes[1..-1]).eval_context.as(nodes.first)
           elsif !nodes.empty?
             StartNode.new(clause_list, nodes).eval_context
           else
